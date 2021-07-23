@@ -4,9 +4,23 @@ import { KeystoneProvider } from '@keystone-next/admin-ui/context';
 import { ErrorBoundary } from '@keystone-next/admin-ui/components';
 import { Core } from '@keystone-ui/core';
 
+import * as view52c2d570 from '../../../node_modules/@keystone-next/fields/types/mongoId/views';
+import * as view42879db1 from '../../../node_modules/@keystone-next/fields/types/text/views';
+import * as view0a83780b from '../../../node_modules/@keystone-next/fields/types/password/views';
+import * as viewbcd601b9 from '../../../node_modules/@keystone-next/fields/types/timestamp/views';
+import * as view89c5b5f7 from '../../../node_modules/@keystone-next/fields/types/select/views';
+import * as viewd6f7420f from '../../../node_modules/@keystone-next/fields/types/integer/views';
+
 const adminConfig = {};
 
-const fieldViews = {};
+const fieldViews = {
+  view52c2d570,
+  view42879db1,
+  view0a83780b,
+  viewbcd601b9,
+  view89c5b5f7,
+  viewd6f7420f,
+};
 
 const lazyMetadataQuery = {
   kind: 'Document',
@@ -146,6 +160,29 @@ const lazyMetadataQuery = {
             },
             loc: { start: 22, end: 234 },
           },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'authenticatedItem' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'InlineFragment',
+                  typeCondition: {
+                    kind: 'NamedType',
+                    name: { kind: 'Name', value: 'User' },
+                  },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -157,7 +194,7 @@ export default function App({ Component, pageProps }) {
     <Core>
       <KeystoneProvider
         adminConfig={adminConfig}
-        adminMetaHash="cgdttq"
+        adminMetaHash="1pmusyb"
         fieldViews={fieldViews}
         lazyMetadataQuery={lazyMetadataQuery}
       >
