@@ -1,38 +1,52 @@
-import { valueFromAST } from 'graphql';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function useForm(initial = {}) {
   // create a state object for our inputs
   const [inputs, setInputs] = useState(initial);
+  const initialValues = Object.values(initial).join('');
+
+  useEffect(() => {
+    // This function runs when the things we are watching change
+    setInputs(initial);
+  }, [initialValues]);
+
+  // {
+  //   name: 'wes',
+  //   description: 'nice shoes',
+  //   price: 100
+  // }
 
   function handleChange(e) {
-    // destructure the name, value and type
     let { value, name, type } = e.target;
     if (type === 'number') {
       value = parseInt(value);
     }
     if (type === 'file') {
-      value[0] = e.target.files;
+      [value] = e.target.files;
     }
     setInputs({
-      // copy in the existing state
+      // copy the existing state
       ...inputs,
-      // dynamically set the input name to the value chosen by user
       [name]: value,
     });
   }
 
   function resetForm() {
-    setInputs(initial)
+    setInputs(initial);
   }
 
   function clearForm() {
-    const blankState = Object.entries(inputs).map((key, value) => key, '')
+    const blankState = Object.fromEntries(
+      Object.entries(inputs).map(([key, value]) => [key, ''])
+    );
+    setInputs(blankState);
   }
 
-  // return the things we want to surface from the custom hook
+  // return the things we want to surface from this custom hook
   return {
     inputs,
     handleChange,
+    resetForm,
+    clearForm,
   };
 }
