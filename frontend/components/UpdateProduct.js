@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/client';
 import Form from './styles/Form';
@@ -46,7 +47,7 @@ export default function UpdateProduct({ id }) {
     updateProduct,
     { data: updateData, error: updateError, loading: updateLoading },
   ] = useMutation(UPDATE_PRODUCT_MUTATION);
-  // Create some state for the form inputs
+  // 2.5 Create some state for the form inputs
   const { inputs, handleChange, clearForm, resetForm } = useForm(data?.Product);
   if (loading) return <p>Loading...</p>;
   // 3. We need the form to handle the updates
