@@ -2,6 +2,11 @@ import { integer, select, text, relationship } from '@keystone-next/fields';
 import { list } from '@keystone-next/keystone/schema';
 
 export const CartItem = list({
+  ui: {
+    listView: {
+      initialColumns: ['product', 'quantity', 'user'],
+    },
+  },
   fields: {
     // TODO: Custom label
     quantity: integer({
