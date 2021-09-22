@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState } from 'react';
 
@@ -5,7 +6,8 @@ const LocalStateContext = createContext();
 const LocalStateProvider = LocalStateContext.Provider;
 
 function CartStateProvider({ children }) {
-  // This is our own custom provider! We will store data (state) and functionality (updaters) in here and anyone can access it via the consumer!
+  // This is our own custom provider! We will store data (state) 
+  // and functionality (updaters) in here and anyone can access it via the consumer!
 
   // Closed cart by default
   const [cartOpen, setCartOpen] = useState(false);
